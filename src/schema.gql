@@ -1,0 +1,12 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Inventory {
+  price: Float!
+  inStock: Int!
+}
+
+type Query {
+  inventory: [Inventory!]!
+}
