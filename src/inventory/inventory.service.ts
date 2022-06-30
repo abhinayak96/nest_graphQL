@@ -21,6 +21,7 @@ export class InventoryService {
     orderDirection: direction,
     searchQuery: string,
   ): Promise<Inventory[]> {
+    //NOTE: it'll return a promise, use await
     return this.inventoryRepository.find({
       where: JSON.parse(searchQuery),
       skip,
@@ -56,6 +57,7 @@ export class InventoryService {
       inStock,
     });
 
+    // NOTE: use await
     return this.inventoryRepository.save(inventory);
   }
 }
