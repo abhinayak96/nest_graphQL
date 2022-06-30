@@ -3,10 +3,11 @@ import { Column, Entity, ObjectIdColumn, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Inventory {
-  @PrimaryColumn()
+  @PrimaryColumn() // NOTE: primary column is not required for mongoDB as there is no primary constraint in mongoDB
   @ObjectIdColumn()
   _id: string;
 
+  // NOTE: what is the purpose of having 2 id columns in a single entity
   @PrimaryColumn()
   id: string;
 
@@ -29,6 +30,7 @@ export class Inventory {
   brand: string;
 }
 
+// NOTE: use proper class name
 class domainValue {
   @Column()
   name: string;
