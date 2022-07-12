@@ -1,7 +1,7 @@
 import { InputType, Field, Int, Float } from '@nestjs/graphql';
 import { MinLength } from 'class-validator';
 
-export enum fields {
+export enum searchFields {
   name = 'name',
   category = 'category',
   subcategory = 'subcategory',
@@ -9,14 +9,14 @@ export enum fields {
   inStock = 'inStock',
   brand = 'brand',
 }
-export enum direction {
+export enum orderDirection {
   ASC = 'ASC',
   DESC = 'DESC',
 }
 @InputType()
 export class orderBy {
-  @Field((type) => fields)
-  field: fields;
-  @Field((type) => direction)
-  order: direction;
+  @Field((type) => searchFields)
+  field: searchFields;
+  @Field((type) => orderDirection)
+  order: orderDirection;
 }

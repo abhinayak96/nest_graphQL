@@ -5,7 +5,7 @@ import { CreateInventoryInput } from './create-inventory.input';
 import { Inventory } from './inventory.entity';
 import { v4 as uuid } from 'uuid';
 
-import { direction, fields } from './pagination.input';
+import { orderDirection, searchFields } from './pagination.enum';
 
 @Injectable()
 export class InventoryService {
@@ -18,7 +18,7 @@ export class InventoryService {
     limit?: number,
     skip?: number,
     orderBy?: string,
-    orderDirection?: direction,
+    orderDirection?: orderDirection,
     searchQuery?: string,
   ): Promise<Inventory[]> {
     return this.inventoryRepository.find({

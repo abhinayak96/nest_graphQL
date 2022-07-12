@@ -2,7 +2,7 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateInventoryInput } from './create-inventory.input';
 import { InventoryService } from './inventory.service';
 import { InventoryType } from './inventory.type';
-import { direction, fields, orderBy } from './pagination.input';
+import { orderDirection, searchFields, orderBy } from './pagination.enum';
 
 @Resolver((of) => InventoryType)
 export class InventoryResolver {
@@ -18,13 +18,13 @@ export class InventoryResolver {
       nullable: true,
       defaultValue: 'name',
     })
-    orderBy: fields,
+    orderBy: searchFields,
     @Args({
       name: 'orderDirection',
       nullable: true,
       defaultValue: 'ASC',
     })
-    orderDirection: direction,
+    orderDirection: orderDirection,
     @Args({
       name: 'name',
       nullable: true,

@@ -3,9 +3,6 @@ import { Column, Entity, ObjectIdColumn, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Inventory {
-  @ObjectIdColumn()
-  _id: string;
-
   @Column()
   id: string;
 
