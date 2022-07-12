@@ -15,14 +15,14 @@ export class InventoryService {
   ) {}
 
   async findAll(
-    limit: number,
-    skip: number,
-    orderBy: string,
-    orderDirection: direction,
-    searchQuery: string,
+    limit?: number,
+    skip?: number,
+    orderBy?: string,
+    orderDirection?: direction,
+    searchQuery?: string,
   ): Promise<Inventory[]> {
     return this.inventoryRepository.find({
-      where: JSON.parse(searchQuery),
+      where: searchQuery ? JSON.parse(searchQuery) : {},
       skip,
       take: limit,
       order: { [orderBy]: orderDirection },
@@ -38,15 +38,15 @@ export class InventoryService {
   // async search(field,search): Promise<Inventory>{
   //   return this.inventoryRepository.findBy()
   // }
-  // async findOne(id: string): Promise<Inventory> {
-  //   return this.inventoryRepository.findOne({ id });
-  // }
-  async createInventory(
+  async findOne(id: string): Promise<Inventory> {
+    // console.log(id);
+    return this.inventoryRepository.findOneBy({ id });
+  }
+  async createInventories(
     createInventoryInput: CreateInventoryInput,
   ): Promise<Inventory> {
     const { name, category, subcategory, price, inStock, brand } =
       createInventoryInput;
-
     const inventory = this.inventoryRepository.create({
       id: uuid(),
       name,
@@ -54,6 +54,7 @@ export class InventoryService {
       subcategory,
       price,
       inStock,
+      brand,
     });
 
     return this.inventoryRepository.save(inventory);

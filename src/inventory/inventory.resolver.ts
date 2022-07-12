@@ -61,15 +61,15 @@ export class InventoryResolver {
     );
   }
 
-  // @Query((returns) => InventoryType)
-  // async inventory(@Args('id') id: string) {
-  //   return this.inventoryService.findOne(id);
-  // }
+  @Query((returns) => InventoryType)
+  async inventory(@Args('id') id: string) {
+    return this.inventoryService.findOne(id);
+  }
 
   @Mutation((returns) => InventoryType)
   async createInventory(
     @Args('createInventoryInput') createInventoryInput: CreateInventoryInput,
   ) {
-    return this.inventoryService.createInventory(createInventoryInput);
+    return this.inventoryService.createInventories(createInventoryInput);
   }
 }
